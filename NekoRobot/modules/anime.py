@@ -14,7 +14,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update, Message
 from telegram.ext import CommandHandler, CallbackQueryHandler, CallbackContext
 from telegram.utils.helpers import mention_html
-
+  
 from NekoRobot import OWNER_ID, REDIS, dispatcher
 from NekoRobot.modules.disable import DisableAbleCommandHandler
 from NekoRobot.modules.helper_funcs.alternate import typing_action
@@ -1198,7 +1198,7 @@ def protecc(update, context):
     user = update.effective_user
     search = message.text.split(" ", 1)
     if len(search) == 1:
-        update.effective_message.reply_text("rip, that's not quite right...")
+        
         return
     search = search[1]
     variables = {"query": search}
@@ -1206,7 +1206,7 @@ def protecc(update, context):
         url, json={"query": character_query, "variables": variables}
     ).json()
     if "errors" in json.keys():
-        update.effective_message.reply_text("rip, that's not quite right...")
+       
         return
     if json:
         json = json["data"]["Character"]
@@ -1216,8 +1216,7 @@ def protecc(update, context):
             REDIS.sadd(f"anime_waifu{user.id}", char_name)
             update.effective_message.reply_text(f"OwO you protecc'd {char_name}. This waifu has been added to your harem. | Powered By @Koyuki_Network")
             REDIS.srem(f"waifus{update.effective_chat.id}", char_name)
-        else:
-            update.effective_message.reply_text("rip, that's not quite right...")
+      
 
 def fvrt_waifu(update, context):
     update.effective_chat
@@ -1250,8 +1249,7 @@ def fvrt_waifu(update, context):
             reply_markup=InlineKeyboardMarkup(buttons),
            )
             os.remove(loml)
-    else:
-        message.reply_text("You havn't added any waifu in your harem!")
+   
 
 __help__ = """
 × `/anime <anime>`*:* returns information about the anime from AniList.
