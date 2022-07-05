@@ -33,7 +33,7 @@ import NekoRobot.modules.sql.users_sql as sql
 from NekoRobot import (ALLOW_EXCL, CERT_PATH, DONATION_LINK, LOGGER,
                           OWNER_ID, PORT, SUPPORT_CHAT, TOKEN, URL, WEBHOOK,
                           SUPPORT_CHAT, dispatcher, StartTime, telethn, updater, pbot)
-# needed to load dynamic modules
+# needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
 from NekoRobot.modules import ALL_MODULES
 from NekoRobot.modules.helper_funcs.chat_status import is_user_admin
@@ -47,7 +47,6 @@ from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
                           Filters, MessageHandler)
 from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
 from telegram.utils.helpers import escape_markdown
-
 
 def get_readable_time(seconds: int) -> str:
     count = 0
@@ -80,31 +79,24 @@ def get_readable_time(seconds: int) -> str:
 
 
 buttons = [
-    [
-                        InlineKeyboardButton(
-                            text=f"Add NekoX To Your Group",
-                            url=f"t.me/NekoXRobot?startgroup=true")
-                    ],
+   
                    [
                        InlineKeyboardButton(text="[► Help ◄]", callback_data="help_back"),
-                       InlineKeyboardButton(text="❔Chit Chat", url="https://t.me/Besties_XD"),
-                       InlineKeyboardButton(text="[► Repo ◄]", url="https://GitHub.com/Awesome-Prince/NekoRobot-3"),
                      ],
                     [                  
                        InlineKeyboardButton(
-                             text="🚑 Support",
-                             url=f"https://t.me/{SUPPORT_CHAT}"),
+            text="💋 About Me", callback_data="neko_"),
                        InlineKeyboardButton(
-                             text="📢 Updates",
-                             url="https://t.me/Koyuki_Updates")
-                     ], 
+                             text="📝 Repo",
+                             url="https://GitHub.com/Awesome-Prince/NekoRobot-3")
+                     ],
+         [
+                        InlineKeyboardButton(
+                            text=f"Add Yor To Your Group",
+                            url=f"t.me/YorForger_Xbot?startgroup=true")
+                    ],
+                        
     ]
-
-
-
-
-
-
 
 
 
@@ -120,12 +112,12 @@ I Use My Powers To Help Admins To Manage Their Groups!
  ❥ /settings:
    ✐ in PM: will send you your settings for all supported modules.
    ✐ in a group: will redirect you to pm, with all that chat's settings.
-For all command use /* [or](https://telegra.ph/file/ab36976c685575c4e1a5f.jpg) *!*
+For all command use /* [or](https://telegra.ph//file/60d066d59e9ec045aec23.jpg) *!* 
 """.format(
     dispatcher.bot.first_name, ""
     if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\nKindly use ! for commands if / is not working\n")
 
-HELP_IMG = "https://telegra.ph/file/ab36976c685575c4e1a5f.jpg"
+HELP_IMG = "https://telegra.ph//file/60d066d59e9ec045aec23.jpg"
 
 
 
@@ -138,8 +130,7 @@ NEKO_IMG = (
       "https://telegra.ph/file/f329cdd740c55bf955deb.mp4",
       )
 
-DONATE_STRING = """Heya, glad to hear you want to donate!
-Click here to donate in [Telegram](https://t.me/DarlingPrince)"""
+DONATE_STRING = """No Need, Iam Rich"""
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -273,10 +264,10 @@ def start(update: Update, context: CallbackContext):
                   [                  
                        InlineKeyboardButton(
                              text="Support🚑",
-                             url=f"https://t.me/Koyuki_Support"),
+                             url=f"https://t.me/KaizenSupport"),
                        InlineKeyboardButton(
                              text="Updates🛰️",
-                             url="https://t.me/Koyuki_Updates")
+                             url="https://t.me/Kaizen_Network")
                      ] 
                 ]
             ),
@@ -367,78 +358,37 @@ def help_button(update, context):
         pass
 
 @run_async
-def neko_about_callback(update, context):
+def neko_about_callback(update: Update, context: CallbackContext):
     query = update.callback_query
-    if query.data == "about_":
-        query.message.edit_text(
-            text=f"[◈](https://telegra.ph/file/0719635a2edcbea04be7a.jpg) Hey {escape_markdown(first_name)} Darling,"
-              f"\n\n ➖➖➖➖➖➖➖➖➖➖➖➖➖"
-              f"\n\n Neko Info ➣ :-"
-              f"\n\n ◈ I Am An Anime Themed Advance Group Management Bot With A Lot Of Sexy Features."
-              f"\n\n ➖➖➖➖➖➖➖➖➖➖➖➖➖"
-              f"\n\n ◈ Check The Buttons To Know About Me More.*",
-            parse_mode=ParseMode.MARKDOWN,
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            text="Master", url="t.me/Awesome-Prince"
-                        ),
-                        InlineKeyboardButton(
-                            text="Support", url="t.me/Koyuki_Support"
-                        ),
-                    ],
-                    [InlineKeyboardButton(text="Back", callback_data="neko_back")],
-                ]
-            ),
-        )
-    elif query.data == "neko_back":
-        first_name = update.effective_user.first_name
-        query.message.edit_text(
-                    PM_START_TEXT.format(
-                    escape_markdown(context.bot.first_name),
-                    escape_markdown(first_name),
-                    escape_markdown(uptime),
-                    sql.num_users(),
-                    sql.num_chats()),
-                reply_markup=InlineKeyboardMarkup(buttons),
-                parse_mode=ParseMode.MARKDOWN,
-                timeout=60,
-                disable_web_page_preview=True,
-        )
-
-
-async def neko_callback_data(update, context):
-    query = update.callback_query
-    uptime = get_readable_time((time.time() - StartTime))
     if query.data == "neko_":
         query.message.edit_text(
-            text="""CallBackQueriesData Here""",
+            text="""◈ Hey Darling,\n          This is [Yor](https://telegra.ph/file/2f44c5a7a2d64fa884647.jpg)\n\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n\n *Yor Info* ➣ :-\n\n ◈ I Am A Anime Themed Advance Group Management Bot With A Lot Of Sexy Features.\n‣ A powerful Group Management bot built to help you manage your group easily & to protect your group from scammers & spammers.\n\n🤖 What can i do :\n‣ I can restrict users.\n‣ I can greet users with customisable welcome messages & even set a  group's rules.\n‣ I can warn users until they reach max warns, with each predefined actions such as ban, mute, kick, etc.\n‣ I have an advanced anti-flood system.\n‣ I have a note keeping system, blacklists, and even predetermined replies on certain keywords.\n‣ I check for admins permission before executing any command & more stuffs.\n\n ➖➖➖➖➖➖➖➖➖➖➖➖➖\n\n ◈ Check The Buttons To Know About Me More.\n\n\n❓ If you've any question about *Yor* then contact my [Master](t.me/MrSumit004) \n\nMade with ❤️ by [sᴜᴍɪᴛ⁪⁬](https://t.me/MrSumit004)""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
+                  [
+                        InlineKeyboardButton(
+                            text="My Home", url="t.me/Kaizen_Network"
+                        ),
+                        InlineKeyboardButton(
+                            text="Support", url="t.me/KaizenSupport"
+                        ),
+                    ],
                  [
-                    InlineKeyboardButton(text="[► Back ◄]", callback_data="neko_back")
+                    InlineKeyboardButton(text="Back", callback_data="neko_back")
                  ]
                 ]
             ),
         )
     elif query.data == "neko_back":
-        first_name = update.effective_user.first_name
         query.message.edit_text(
-                    PM_START_TEXT.format(
-                    escape_markdown(context.bot.first_name),
-                    escape_markdown(first_name),
-                    escape_markdown(uptime),
-                    sql.num_users(),
-                    sql.num_chats()),
+                PM_START_TEXT,
                 reply_markup=InlineKeyboardMarkup(buttons),
+                parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
                 disable_web_page_preview=False,
         )
-
 @run_async
 def get_help(update: Update, context: CallbackContext):
     chat = update.effective_chat  # type: Optional[Chat]
@@ -462,7 +412,7 @@ def get_help(update: Update, context: CallbackContext):
             reply_markup=InlineKeyboardMarkup(
                 [
                   [
-                  InlineKeyboardButton(text="Click Here", url="https://t.me/NekoXRobot?start=help")
+                  InlineKeyboardButton(text="Click Here", url="https://t.me/YorForger_Xbot?start=help")
                   ]
                 ]
             ),
@@ -540,8 +490,12 @@ def settings_button(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup([[
                     InlineKeyboardButton(
                         text="Back",
-                        callback_data="stngs_back({})".format(chat_id))
-                ]]))
+                        callback_data="stngs_back({})".format(chat_id),
+                )
+              ]
+            ]
+        ),
+       )
 
         elif prev_match:
             chat_id = prev_match.group(1)
@@ -552,7 +506,10 @@ def settings_button(update: Update, context: CallbackContext):
                 "you're interested in.".format(chat.title),
                 reply_markup=InlineKeyboardMarkup(
                     paginate_modules(
-                        curr_page - 1, CHAT_SETTINGS, "stngs", chat=chat_id)))
+                        curr_page - 1, CHAT_SETTINGS, "stngs", chat=chat_id
+                     )
+                  ),
+                )
 
         elif next_match:
             chat_id = next_match.group(1)
@@ -563,7 +520,10 @@ def settings_button(update: Update, context: CallbackContext):
                 "you're interested in.".format(chat.title),
                 reply_markup=InlineKeyboardMarkup(
                     paginate_modules(
-                        next_page + 1, CHAT_SETTINGS, "stngs", chat=chat_id)))
+                        next_page + 1, CHAT_SETTINGS, "stngs", chat=chat_id
+                    )
+                 ),
+               )
 
         elif back_match:
             chat_id = back_match.group(1)
@@ -573,7 +533,10 @@ def settings_button(update: Update, context: CallbackContext):
                 "you're interested in.".format(escape_markdown(chat.title)),
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(
-                    paginate_modules(0, CHAT_SETTINGS, "stngs", chat=chat_id)))
+                    paginate_module(0, CHAT_SETTINGS, "stngs", chat=chat_id
+                 )
+              ),
+           )
 
         # ensure no spinny white circle
         bot.answer_callback_query(query.id)
@@ -605,9 +568,14 @@ def get_settings(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup([[
                     InlineKeyboardButton(
                         text="Settings",
-                        url="t.me/{}?start=stngs_{}".format(
-                            context.bot.username, chat.id))
-                ]]))
+                        url="t.me/YorForger_Xbot?start=stngs_{}".format(
+                            context.bot.username, chat.id
+                          ),
+                       )
+                  ]
+               ]
+            ),
+        )
         else:
             text = "Click here to check your settings."
 
@@ -670,7 +638,7 @@ def main():
 
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
-            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "[Iam Alive!](https://telegra.ph/file/4533d130b73a7dd20b83d.jpg)", parse_mode=ParseMode.MARKDOWN,
+            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "[Iam Alive!](https://telegra.ph//file/60d066d59e9ec045aec23.jpg)", parse_mode=ParseMode.MARKDOWN,
 
             reply_markup=InlineKeyboardMarkup(
 
@@ -682,7 +650,7 @@ def main():
 
                              text="[► Summon Me ◄]",
 
-                             url=f"t.me/NekoXRobot?startgroup=true"),
+                             url=f"t.me/YorForger_Xbot?startgroup=true"),
 
 
                      ] 
