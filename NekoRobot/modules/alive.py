@@ -26,13 +26,12 @@ import re, os
 from NekoRobot.events import register
 from NekoRobot import telethn as tbot
 from NekoRobot import telethn as tgbot
-PHOTO = "https://telegra.ph/file/a21731c0c4c7f27a3ec16.jpg"
+PHOTO = "https://telegra.ph/file/333142ebaa84943a73f16.jpg"
 @register(pattern=("/alive"))
 async def awake(event):
-  NEKO = f"**♡ hey {event.sender.first_name} I,m Neko Robot** \n\n"
+  NEKO = f"**♡ hey {event.sender.first_name} I,m Yor ** \n\n"
   NEKO += "**♡ I'm Working with Cuteness**\n\n"
-  NEKO += "**♡ Neko: LATEST Version**\n\n"
-  NEKO += "**♡ My Creator:** [LovelyPrince](t.me/DarlingPrince)\n\n"
-  NEKO += "**♡ python-Telegram-Bot: 13.11**\n\n"
-  BUTTON = [[Button.url("🚑 Support", "https://t.me/Koyuki_Support"), Button.url("📢 Updates", "https://t.me/Koyuki_Updates")]]
+  NEKO += "**♡ My Creator:** [SuMiT](t.me/MrSumit004)\n\n"
+  NEKO += "**♡ My Sweetheart:** [SHIVANG](t.me/shivang_17)"
+  BUTTON = [[Button.url("🚑 Support", "https://t.me/KaizenSupport"), Button.url("📢 Updates", "https://t.me/Kaizen_Network")]]
   await tbot.send_file(event.chat_id, PHOTO, caption=NEKO,  buttons=BUTTON)
