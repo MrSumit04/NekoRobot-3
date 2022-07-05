@@ -1,5 +1,5 @@
 PM_START_TEXT = """
-────「 [{}](https://telegra.ph//file/60d066d59e9ec045aec23.jpg) 」────
+────「 [{}](https://telegra.ph/file/87aa6f9062af5d79709f4.jpg) 」────
 *やあ! {} My Darling, Iam your DeadlyHeart🖤,
 I am an Anime themed Deadly group management bot with a lot of Devil Features.*
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
