@@ -112,12 +112,12 @@ I Use My Powers To Help Admins To Manage Their Groups!
  ❥ /settings:
    ✐ in PM: will send you your settings for all supported modules.
    ✐ in a group: will redirect you to pm, with all that chat's settings.
-For all command use /* [or](https://telegra.ph//file/60d066d59e9ec045aec23.jpg) *!* 
+For all command use /* [or](https://telegra.ph/file/da2ad18cfd840acdc12d9.jpg) *!* 
 """.format(
     dispatcher.bot.first_name, ""
     if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\nKindly use ! for commands if / is not working\n")
 
-HELP_IMG = "https://telegra.ph//file/60d066d59e9ec045aec23.jpg"
+HELP_IMG = "https://telegra.ph/file/da2ad18cfd840acdc12d9.jpg"
 
 
 
