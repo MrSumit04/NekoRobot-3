@@ -1,13 +1,12 @@
 PM_START_TEXT = """
-────「 [{}](https://telegra.ph/file/bdc771a084e2c806ec756.jpg) 」────
-*やあ! {} My Darling, Iam your SweetHeart💜,
-I am an Anime themed advance group management bot with a lot of Sexy Features.*
+────「 [{}](https://telegra.ph//file/60d066d59e9ec045aec23.jpg) 」────
+*やあ! {} My Darling, Iam your DeadlyHeart🖤,
+I am an Anime themed Deadly group management bot with a lot of Devil Features.*
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
-◈ *Uptime:* `{}`
+◈ *Server Uptime:* `{}`
 ◈ `{}` *users, across* `{}` *chats.*
-◈ *Thanks To @NekoXRobot For NekoRobot Repo*
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
-➢ Try The Help Buttons Below To Know My Abilities ♡
+➢ Try The Help Buttons Below To Know My Abilities ✺
 """
 
 
