@@ -375,12 +375,7 @@ EIGHTBALL_HANDLER = DisableAbleCommandHandler("8ball", eightball)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
 SHOUT_HANDLER = DisableAbleCommandHandler("shout", shout)
 WEEBIFY_HANDLER = DisableAbleCommandHandler("weebify", weebify)
-GDMORNING_HANDLER = DisableAbleMessageHandler(
-    Filters.regex(r"(?i)(gm|good morning)"), goodmorning, friendly="goodmorning"
-)
-GDNIGHT_HANDLER = DisableAbleMessageHandler(
-    Filters.regex(r"(?i)(gn|good night)"), goodnight, friendly="goodnight"
-)
+
 
 dispatcher.add_handler(WEEBIFY_HANDLER)
 dispatcher.add_handler(SHOUT_HANDLER)
@@ -396,8 +391,7 @@ dispatcher.add_handler(RLG_HANDLER)
 dispatcher.add_handler(DECIDE_HANDLER)
 dispatcher.add_handler(EIGHTBALL_HANDLER)
 dispatcher.add_handler(TABLE_HANDLER)
-dispatcher.add_handler(GDMORNING_HANDLER)
-dispatcher.add_handler(GDNIGHT_HANDLER)
+
 
 __mod_name__ = "Fun"
 __command_list__ = [
@@ -431,6 +425,5 @@ __handlers__ = [
     SHOUT_HANDLER,
     WEEBIFY_HANDLER,
     EIGHTBALL_HANDLER,
-    GDMORNING_HANDLER,
-    GDNIGHT_HANDLER,
+   
 ]
