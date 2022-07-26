@@ -369,7 +369,7 @@ def neko_about_callback(update: Update, context: CallbackContext):
                 [
                   [
                         InlineKeyboardButton(
-                            text="My Home", url="t.me/Kaizen_Network"
+                            text="Repo", url="https://github.com/Awesome-Prince/NekoRobot-3"
                         ),
                         InlineKeyboardButton(
                             text="Support", url="t.me/KaizenSupport"
