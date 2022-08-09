@@ -1165,92 +1165,7 @@ def animequotes(update: Update, context: CallbackContext):
     reply_photo(random.choice(QUOTES_IMG))
 
 
-
-
-
-@typing_action
-def waifu(update, context):
-    search = random.choice(WAIFUS_PIC)
-    variables = {"query": search}
-    json = requests.post(
-        url, json={"query": character_query, "variables": variables}
-    ).json()
-    if json:
-        json = json["data"]["Character"]
-        char_name = f"{json.get('name').get('full')}"
-        image = json.get("image", None)
-        if image:
-            image = image.get("large")
-            update.effective_message.reply_photo(
-                photo=image, caption= f"*A waifu appeared!*\nAdd them to your harem by sending /protecc character name \nPowered By @Koyuki_Network",
-                  
-                parse_mode=ParseMode.MARKDOWN,
-            )
-            REDIS.sadd(f"waifus{update.effective_chat.id}", char_name)
-        else:
-            update.effective_message.reply_text(
-                "Oops Waifu Ran Away",
-                parse_mode=ParseMode.MARKDOWN,
-            )
-@typing_action
-def protecc(update, context):
-    message = update.effective_message
-    user = update.effective_user
-    search = message.text.split(" ", 1)
-    if len(search) == 1:
-        
-        return
-    search = search[1]
-    variables = {"query": search}
-    json = requests.post(
-        url, json={"query": character_query, "variables": variables}
-    ).json()
-    if "errors" in json.keys():
-       
-        return
-    if json:
-        json = json["data"]["Character"]
-        char_name = f"{json.get('name').get('full')}"
-        WAIFUS = list(REDIS.sunion(f"waifus{update.effective_chat.id}"))
-        if char_name in WAIFUS:
-            REDIS.sadd(f"anime_waifu{user.id}", char_name)
-            update.effective_message.reply_text(f"OwO you protecc'd {char_name}. This waifu has been added to your harem. | Powered By @Koyuki_Network")
-            REDIS.srem(f"waifus{update.effective_chat.id}", char_name)
-      
-
-def fvrt_waifu(update, context):
-    update.effective_chat
-    user = update.effective_user
-    message = update.effective_message
-    buttons = [
-                [
-                    InlineKeyboardButton(
-                        "Inline 🌐", switch_inline_query_current_chat="harem"
-                    )
-                ]
-            ]
-    fvrt_char = list(REDIS.sunion(f"anime_waifu{user.id}"))
-    fvrt_char.sort()
-    fvrt_char = f"\n• ".join(fvrt_char)
-    if fvrt_char: 
-        lol = list(REDIS.sunion(f"anime_waifu{user.id}"))
-        search = random.choice(lol)
-        variables = {"query": search}
-        json = requests.post(
-        url, json={"query": character_query, "variables": variables}
-        ).json()
-        if json:
-            json = json["data"]["Character"]
-            image = json.get("image", None)
-            loml = image.get("large")
-            message.reply_document(
-            document=loml,
-            caption= "{}'s harem in {} \n• {}".format(user.username, update.effective_chat.title, fvrt_char),
-            reply_markup=InlineKeyboardMarkup(buttons),
-           )
-            os.remove(loml)
-   
-
+  
 __help__ = """
 × `/anime <anime>`*:* returns information about the anime from AniList.
 × `/character <character>`*:* returns information about the character from AniList.
@@ -1279,9 +1194,6 @@ MANGALIST_HANDLER = DisableAbleCommandHandler("mangalist", readmanga, run_async=
 FVRT_CHAR_HANDLER = DisableAbleCommandHandler(
     ["characterlist", "fcl"], fvrtchar, run_async=True
 )
-HAREM_HANDLER = DisableAbleCommandHandler(
-    "harem", fvrt_waifu, run_async=True
-)
 REMOVE_WATCHLIST_HANDLER = DisableAbleCommandHandler(
     ["removewatchlist", "rwl"], removewatchlist, run_async=True
 )
@@ -1301,21 +1213,15 @@ ANIMEQUOTES_HANDLER = DisableAbleCommandHandler(
 QUOTE = DisableAbleCommandHandler("quote", quotes)
 CHANGE_QUOTE = CallbackQueryHandler(change_quote, pattern=r"change_.*", run_async=True)
 QUOTE_CHANGE = CallbackQueryHandler(change_quote, pattern=r"quote_.*", run_async=True)
-WAIFU_HANDLER = CommandHandler("waifu", waifu, run_async=True)
-PROTECC_HANDLER = CommandHandler("protecc", protecc, run_async=True)
-
 
 dispatcher.add_handler(BUTTON_HANDLER)
-dispatcher.add_handler(HAREM_HANDLER)
 dispatcher.add_handler(ANIME_HANDLER)
 dispatcher.add_handler(ANIME_STUFFS_HANDLER)
 dispatcher.add_handler(CHARACTER_HANDLER)
-dispatcher.add_handler(WAIFU_HANDLER)
 dispatcher.add_handler(MANGA_HANDLER)
 dispatcher.add_handler(AIRING_HANDLER)
 dispatcher.add_handler(USER_HANDLER)
 dispatcher.add_handler(UPCOMING_HANDLER)
-dispatcher.add_handler(PROTECC_HANDLER)
 dispatcher.add_handler(KAIZOKU_SEARCH_HANDLER)
 dispatcher.add_handler(KAYO_SEARCH_HANDLER)
 dispatcher.add_handler(WATCHLIST_HANDLER)
@@ -1351,8 +1257,5 @@ __handlers__ = [
     AIRING_HANDLER,
     KAYO_SEARCH_HANDLER,
     KAIZOKU_SEARCH_HANDLER,
-    ANIMEQUOTES_HANDLER,
-    WAIFU_HANDLER,
-    PROTECC_HANDLER,
-    HAREM_HANDLER,
+    ANIMEQUOTES_HANDLER,    
 ]
