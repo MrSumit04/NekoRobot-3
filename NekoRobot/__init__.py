@@ -302,4 +302,4 @@ tg.RegexHandler = CustomRegexHandler
 tg.CommandHandler = CustomCommandHandler
 tg.MessageHandler = CustomMessageHandler
 
-
+LOGGER.info("[NEKOROBOT IS READY]")
