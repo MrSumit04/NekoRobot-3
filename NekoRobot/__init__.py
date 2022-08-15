@@ -227,9 +227,7 @@ else:
 
 
 DEV_USERS.add(1915770303)
-DEV_USERS.add(5396584280)
-DEV_USERS.add(5236400458)
-DEV_USERS.add(2144495178)
+
 
 
 REDIS = StrictRedis.from_url(REDIS_URL, decode_responses=True)
