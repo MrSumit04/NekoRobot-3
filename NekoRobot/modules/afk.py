@@ -1,17 +1,21 @@
-import html
+import time
 import random
 
-from telegram import MessageEntity, Update
-from telegram.error import BadRequest
-from telegram.ext import CallbackContext, Filters, MessageHandler
 
-from NekoRobot import NEKO_PTB
-from NekoRobot.modules.disable import (
-    DisableAbleCommandHandler,
-    DisableAbleMessageHandler,
-)
-from NekoRobot.modules.sql import afk_sql as sql
+from typing import Optional
+from datetime import datetime
+from telegram import Message, User
+from telegram import MessageEntity, ParseMode
+from telegram.error import BadRequest
+from telegram.ext import Filters, MessageHandler, run_async
+
+from NekoRobot import dispatcher
+from NekoRobot.modules.disable import DisableAbleCommandHandler, DisableAbleMessageHandler
 from NekoRobot.modules.users import get_user_id
+
+from NekoRobot.modules.helper_funcs.alternate import send_message
+from NekoRobot.modules.helper_funcs.readable_time import get_readable_time
+ 
 
 AFK_GROUP = 7
 AFK_REPLY_GROUP = 8
